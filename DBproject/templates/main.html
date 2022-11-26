@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block body %}
+<p>{{Table_Name}}<p>
+    <table border="1" cellpadding="5" cellspacing="5">
+        {% for d in colname %}
+                <td>{{d[0]}}</td>
+        {% endfor %}  
+        {% for row in data %}
+            <tr>
+                {% for d in row %}
+                    <td>{{d}}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}    
+    </table>
+{% endblock %}
