@@ -11,7 +11,7 @@ def connect_db():
 		host=ip_ad,
 		user="guest",
 		password="qwerty",
-		database="testapp",
+		database="DB_project",
 		port=3306,
 		auth_plugin='mysql_native_password'
 	)

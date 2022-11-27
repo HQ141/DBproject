@@ -20,28 +20,28 @@ CREATE TABLE branches (
     branch_id       INTEGER NOT NULL,
     organization_id INTEGER NOT NULL,
     manager_cnic    CHAR(16) NOT NULL,
-    location        VARCHAR2(30) NOT NULL
+    location        VARCHAR(30) NOT NULL
 );
 
 ALTER TABLE branches ADD CONSTRAINT branches_pk PRIMARY KEY ( branch_id );
 
 CREATE TABLE donations (
     account_no CHAR(16) NOT NULL,
-    "Date"     DATE NOT NULL,
-    donor      VARCHAR2(30) NOT NULL,
+    donation_date    DATE NOT NULL,
+    donor      VARCHAR(30) NOT NULL,
     amount     INTEGER NOT NULL
 );
 
 ALTER TABLE donations
     ADD CONSTRAINT donations_pk PRIMARY KEY ( account_no,
-                                              "Date",
+                                              donation_date,
                                               donor );
 
 CREATE TABLE employees (
     cnic            CHAR(16) NOT NULL,
-    name            VARCHAR2(30) NOT NULL,
+    name            VARCHAR(30) NOT NULL,
     phone_no        CHAR(11) NOT NULL,
-    position        VARCHAR2(25) NOT NULL,
+    position        VARCHAR(25) NOT NULL,
     age             INTEGER NOT NULL,
     organization_id INTEGER NOT NULL
 );
@@ -58,10 +58,10 @@ ALTER TABLE offer ADD CONSTRAINT offer_pk PRIMARY KEY ( branch_id,
 
 CREATE TABLE organization (
     organization_id  INTEGER NOT NULL,
-    name             VARCHAR2(30) NOT NULL,
+    name             VARCHAR(30) NOT NULL,
     date_established DATE NOT NULL,
     branches         INTEGER NOT NULL,
-    headquaters      VARCHAR2(30) NOT NULL,
+    headquaters      VARCHAR(30) NOT NULL,
     head_cnic        CHAR(16) NOT NULL
 );
 
@@ -73,21 +73,21 @@ CREATE UNIQUE INDEX organization__idx ON
 ALTER TABLE organization ADD CONSTRAINT organization_pk PRIMARY KEY ( organization_id );
 
 CREATE TABLE participation (
-    "Date"         DATE NOT NULL,
+    participation_date         DATE NOT NULL,
     volunteer_cnic CHAR(16) NOT NULL,
     branch_id      INTEGER NOT NULL,
     service_id     INTEGER NOT NULL
 );
 
 ALTER TABLE participation
-    ADD CONSTRAINT participation_pk PRIMARY KEY ( "Date",
+    ADD CONSTRAINT participation_pk PRIMARY KEY ( participation_date,
                                                   volunteer_cnic,
                                                   branch_id,
                                                   service_id );
 
 CREATE TABLE services (
     service_id INTEGER NOT NULL,
-    name       VARCHAR2(25) NOT NULL,
+    name       VARCHAR(25) NOT NULL,
     avg_cost   INTEGER NOT NULL
 );
 
@@ -95,7 +95,7 @@ ALTER TABLE services ADD CONSTRAINT services_pk PRIMARY KEY ( service_id );
 
 CREATE TABLE volunteers (
     volunteer_cnic CHAR(16) NOT NULL,
-    name           VARCHAR2(20) NOT NULL,
+    name           VARCHAR(20) NOT NULL,
     age            INTEGER,
     phone_no       CHAR(11) NOT NULL
 );
@@ -124,8 +124,8 @@ ALTER TABLE donations
 ALTER TABLE employees
     ADD CONSTRAINT employees_organization_fk FOREIGN KEY ( organization_id )
         REFERENCES organization ( organization_id )
-            ON DELETE CASCADE
-            initially deferred deferrable;
+            ON DELETE CASCADE;
+--        DEFERRABLE INITIALLY DEFERRED;
 
 ALTER TABLE offer
     ADD CONSTRAINT offer_branches_fk FOREIGN KEY ( branch_id )
@@ -135,10 +135,10 @@ ALTER TABLE offer
     ADD CONSTRAINT offer_services_fk FOREIGN KEY ( service_id )
         REFERENCES services ( service_id );
 
-ALTER TABLE organization
-    ADD CONSTRAINT organization_employees_fk FOREIGN KEY ( head_cnic )
-        REFERENCES employees ( cnic )
-        initially deferred deferrable;
+-- ALTER TABLE organization
+--   ADD CONSTRAINT organization_employees_fk FOREIGN KEY ( head_cnic )
+--        REFERENCES employees ( cnic )
+--        DEFERRABLE INITIALLY DEFERRED;
 
 ALTER TABLE participation
     ADD CONSTRAINT participation_branches_fk FOREIGN KEY ( branch_id )
