@@ -1,3 +1,4 @@
+delete from organization;delete from employees;delete from bank_accounts;delete from branches;delete form donations;delete from services;delete from offer;delete from volunteers;delete from participation;
 insert into organization(organization_id,name,date_established,branches,headquaters,head_cnic) 
 values
 (1,'Edhi Foudation','1990-07-07',10,'Karachi,Landhi',1111111111111111),
@@ -40,6 +41,6 @@ values
 (4220181812345789,'SHEHZIL',21,03459978808);
 insert into participation(participation_date,volunteer_cnic,branch_id,service_id) 
 values
-('2022-06-20',4220181824444,1,200),
-('2022-09-20',4220181823405,2,201),
-('2021-12-13',4220181812345,2,203);
+('2022-06-20',4220181824444892,1,200),
+('2022-09-20',4220181823405546,2,201),
+('2021-12-13',4220181812345789,1,203);

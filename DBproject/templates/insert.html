@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block body %}
+<div class=page>
+    <h1>Data</h1>
+  
+    <form action="/insert/{{tname}}" method ="POST">
+    {% for d in my_list %}   
+   <div class="form-group row">
+      <label for="album" class="col-2 col-form-label">{{d[0]}}</label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="{{d[0]}}">
+      </div>
+    </div>
+    {% endfor %}
+    <p><input type = "submit" Value ="Submit" /></p>
+  </form>
+  
+  
+  
+  </div>
+
+{% endblock %}

@@ -1,7 +1,27 @@
 {% extends "base.html" %}
 {% block body %}
-<p>{{Table_Name}}<p>
-    <table border="1" cellpadding="5" cellspacing="5">
+<p class="w3-display-topleft w3-padding-large w3-xlarge">{{Table_Name}}</p>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+    <div class="w3-display-topright">
+        <tr>
+        <form action="/display/organization" action="GET">
+            <p><input type = "submit" Value ="organization" /></p>
+        </form>
+        </tr>
+        <tr>
+            <form action="/display/branches" action="GET">
+                <p><input type = "submit" Value ="Branches" /></p>
+            </form>
+            </tr>
+        <tr>
+            <form action="/display/volunteers" action="GET">
+                <p><input type = "submit" Value ="Volunteers" /></p>
+            </form>
+        </tr>
+    </div>
+    <div class="w3-display-middle">
+        <table border="1" cellpadding="5" cellspacing="5">
         {% for d in colname %}
                 <td>{{d[0]}}</td>
         {% endfor %}  
@@ -13,4 +33,14 @@
             </tr>
         {% endfor %}    
     </table>
+   
+    <form action="/delete" action="GET">
+        <p><input type = "submit" Value ="Delete" /></p>
+      </form>
+      <form action="/update" action="GET">
+        <p><input type = "submit" Value ="Update" /></p>
+      </form>
+  </div>
+  
+</div>
 {% endblock %}

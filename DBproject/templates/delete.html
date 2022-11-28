@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body %}
+<div class=page>
+    <h1>Delete</h1>
+  
+    <form action="/delete" method ="POST"> 
+   <div class="form-group row">
+      <label for="album" class="col-2 col-form-label">id</label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="id">
+      </div>
+    </div>
+    <p><input type = "submit" Value ="Submit" /></p>
+  </form>
+  
+  
+  
+  </div>
+
+{% endblock %}

@@ -140,13 +140,9 @@ ALTER TABLE offer
 --        REFERENCES employees ( cnic )
 --        DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE participation
-    ADD CONSTRAINT participation_branches_fk FOREIGN KEY ( branch_id )
-        REFERENCES branches ( branch_id );
-
-ALTER TABLE participation
-    ADD CONSTRAINT participation_services_fk FOREIGN KEY ( service_id )
-        REFERENCES services ( service_id );
+ALTER TABLE participation 
+    ADD CONSTRAINT participation_offer_fk foreign key (branch_id,service_id) 
+        REFERENCES offer(branch_id,service_id);
 
 ALTER TABLE participation
     ADD CONSTRAINT participation_volunteers_fk FOREIGN KEY ( volunteer_cnic )
